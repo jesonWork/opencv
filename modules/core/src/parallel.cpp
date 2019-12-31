@@ -54,7 +54,7 @@
 #endif
 
 #if defined __linux__ || defined __APPLE__ || defined __GLIBC__ \
-    || defined __HAIKU__
+    || defined __HAIKU__ || defined __EMSCRIPTEN__
     #include <unistd.h>
     #include <stdio.h>
     #include <sys/types.h>
@@ -783,7 +783,7 @@ int cv::getNumberOfCPUs(void)
 {
 #if defined _WIN32
     SYSTEM_INFO sysinfo;
-#if (defined(_M_ARM) || defined(_M_X64) || defined(WINRT)) && _WIN32_WINNT >= 0x501
+#if (defined(_M_ARM) || defined(_M_ARM64) || defined(_M_X64) || defined(WINRT)) && _WIN32_WINNT >= 0x501
     GetNativeSystemInfo( &sysinfo );
 #else
     GetSystemInfo( &sysinfo );
@@ -793,7 +793,7 @@ int cv::getNumberOfCPUs(void)
 #elif defined __ANDROID__
     static int ncpus = getNumberOfCPUsImpl();
     return ncpus;
-#elif defined __linux__ || defined __GLIBC__ || defined __HAIKU__
+#elif defined __linux__ || defined __GLIBC__ || defined __HAIKU__ || defined __EMSCRIPTEN__
     return (int)sysconf( _SC_NPROCESSORS_ONLN );
 #elif defined __APPLE__
     int numCPU=0;

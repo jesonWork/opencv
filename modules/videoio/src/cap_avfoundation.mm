@@ -1191,7 +1191,7 @@ CvVideoWriter_AVFoundation::CvVideoWriter_AVFoundation(const char* filename, int
     NSError *error = nil;
 
 
-    // Make sure the file does not already exist. Necessary to overwirte??
+    // Make sure the file does not already exist. Necessary to overwrite??
     /*
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if ([fileManager fileExistsAtPath:path]){
@@ -1233,7 +1233,7 @@ CvVideoWriter_AVFoundation::CvVideoWriter_AVFoundation(const char* filename, int
 
     if(mMovieWriter.status == AVAssetWriterStatusFailed){
         NSLog(@"%@", [mMovieWriter.error localizedDescription]);
-        // TODO: error handling, cleanup. Throw execption?
+        // TODO: error handling, cleanup. Throw exception?
         // return;
     }
 
@@ -1293,7 +1293,7 @@ bool CvVideoWriter_AVFoundation::writeFrame(const IplImage* iplimage) {
             colorSpace, kCGImageAlphaLast|kCGBitmapByteOrderDefault,
             provider, NULL, false, kCGRenderingIntentDefault);
 
-    //CGImage -> CVPixelBufferRef coversion
+    //CGImage -> CVPixelBufferRef conversion
     CVPixelBufferRef pixelBuffer = NULL;
     CFDataRef cfData = CGDataProviderCopyData(CGImageGetDataProvider(cgImage));
     int status = CVPixelBufferCreateWithBytes(NULL,
